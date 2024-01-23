@@ -1,0 +1,23 @@
+# docker-compose.yml
+version: '3'
+services:
+  payment-gateway:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: payment_gateway
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package payment;
+
+service PaymentService {
+  rpc ProcessPayment (PaymentRequest) returns (PaymentResponse);
+}
+
+message PaymentRequest {
+  string currency = 1;
+  double amount = 2;
+  // Add more relevant fields as needed
+}
+
+message PaymentResponse {
+  bool success = 1;
+  string message = 2;
+}
